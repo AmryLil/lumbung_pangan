@@ -7,12 +7,14 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Http\\Controllers\\CategoryProductController' => $baseDir . '/app/Http/Controllers/CategoryProductController.php',
+    'App\\Http\\Controllers\\NilaiController' => $baseDir . '/app/Http/Controllers/NilaiController.php',
     'App\\Http\\Controllers\\ProductController' => $baseDir . '/app/Http/Controllers/ProductController.php',
     'App\\Http\\Middleware\\CheckUserAuthenticated' => $baseDir . '/app/Http/Middleware/CheckUserAuthenticated.php',
     'App\\Http\\Middleware\\RoleMiddleware' => $baseDir . '/app/Http/Middleware/RoleMiddleware.php',
     'App\\Models\\Cart' => $baseDir . '/app/Models/Cart.php',
     'App\\Models\\CartItem' => $baseDir . '/app/Models/CartItem.php',
     'App\\Models\\CategoryProduct' => $baseDir . '/app/Models/CategoryProduct.php',
+    'App\\Models\\Input' => $baseDir . '/app/Models/Input.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\Transaksi' => $baseDir . '/app/Models/Transaksi.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

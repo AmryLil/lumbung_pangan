@@ -9,7 +9,6 @@
         <div class="flex justify-between items-center">
             <div class="p-2 bg-slate-900 text-xl text-slate-50 p-2 rounded font-semibold w-[100vh]">Kelola Data Barang Disini
             </div>
-
             <button class="btn btn-outline h-2 my-4">Tambah Barang</button>
         </div>
         <div class="overflow-x-auto">

@@ -546,12 +546,14 @@ class ComposerStaticInit210157f863fbb4aa3143a7ea4424cf96
 
     public static $classMap = array (
         'App\\Http\\Controllers\\CategoryProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryProductController.php',
+        'App\\Http\\Controllers\\NilaiController' => __DIR__ . '/../..' . '/app/Http/Controllers/NilaiController.php',
         'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Middleware\\CheckUserAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckUserAuthenticated.php',
         'App\\Http\\Middleware\\RoleMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/RoleMiddleware.php',
         'App\\Models\\Cart' => __DIR__ . '/../..' . '/app/Models/Cart.php',
         'App\\Models\\CartItem' => __DIR__ . '/../..' . '/app/Models/CartItem.php',
         'App\\Models\\CategoryProduct' => __DIR__ . '/../..' . '/app/Models/CategoryProduct.php',
+        'App\\Models\\Input' => __DIR__ . '/../..' . '/app/Models/Input.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\Transaksi' => __DIR__ . '/../..' . '/app/Models/Transaksi.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

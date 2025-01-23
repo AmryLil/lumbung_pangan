@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoryProduct;
 use App\Models\Product;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
@@ -14,15 +13,14 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        // Mengambil semua produk dengan paginasi (15 per halaman)
+        // Debug untuk melihat request parameter
+
         $products = Product::paginate(15);
 
-        // Cek apakah request memiliki parameter 'page'
         if ($request->has('page')) {
             return view('list_product', compact('products'));
         }
 
-        // Hanya mengambil produk terlaris jika halaman shop ditampilkan
         $productsLaris = Product::skip(4)->take(4)->get();
         return view('shop', compact('products', 'productsLaris'));
     }
@@ -30,6 +28,7 @@ class ProductController extends Controller
     public function Best4Product(Request $request)
     {
         $products = Product::limit(4)->get();
+        dd($products);  // Debug produk terbaik
         return view('index', compact('products'));
     }
 
@@ -45,70 +44,61 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = CategoryProduct::all();  // Ambil semua kategori untuk pilihan
+        $categories = CategoryProduct::all();
+
         return view('dashboard.produk.add', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        try {
-            // Validasi form
-            $validated = $request->validate([
-                'nama'        => 'required|string|max:255',
-                'deskripsi'   => 'required|string',
-                'harga'       => 'required|numeric',
-                'kategori_id' => 'required|exists:category_products,id',
-                'jumlah'      => 'required|integer',
-                'path_img'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
+        // Validasi input yang masuk
+        $request->validate([
+            'nama'        => 'required|string|max:255',
+            'deskripsi'   => 'required|string',
+            'harga'       => 'required|numeric',
+            'jumlah'      => 'required|integer',
+            'kategori_id' => 'required|integer',
+            'path_img'    => 'required|image|mimes:jpeg,png,jpg,gif',  // Validasi file gambar
+        ]);
 
-            $fileName = null;
-            if ($request->hasFile('path_img')) {
-                $image    = $request->file('path_img');
-                $fileName = $image->store('images', 'public');
-            }
-
-            // Menggabungkan data produk dengan gambar (jika ada)
-            $productData = array_merge($validated, [
-                'path_img'   => $fileName,
-                'created_at' => now(),
-            ]);
-
-            Product::create($productData);
-
-            return redirect()->route('dashboard.products')->with('success', 'Produk berhasil disimpan!');
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            abort(500, 'Data tidak valid: ' . implode(', ', $e->errors()));
-        } catch (\Exception $e) {
-            // Tangani error lainnya
-            Log::error('Gagal menyimpan produk:', ['error' => $e->getMessage()]);
-            abort(500, 'Terjadi kesalahan: ' . $e->getMessage());
+        // Menangani pengunggahan gambar
+        if ($request->hasFile('path_img')) {
+            $image     = $request->file('path_img');
+            $imagePath = $image->store('product_images', 'public');  // Menyimpan gambar di folder 'public/product_images'
         }
+
+        // Menyimpan data produk ke database
+        Product::create([
+            'nama'        => $request->input('nama'),
+            'deskripsi'   => $request->input('deskripsi'),
+            'harga'       => $request->input('harga'),
+            'jumlah'      => $request->input('jumlah'),
+            'kategori_id' => $request->input('kategori_id'),
+            'path_img'    => $imagePath ?? null,  // Menyimpan path gambar
+        ]);
+
+        return redirect()->route('products.index');
     }
 
     public function edit($id)
     {
         $product    = Product::findOrFail($id);
         $categories = CategoryProduct::all();
+
         return view('dashboard.produk.update', compact('product', 'categories'));
     }
 
     public function update(Request $request, $id)
     {
-        try {
-            $product = Product::findOrFail($id);
-        } catch (\Exception $e) {
-            Log::error('Produk tidak ditemukan:', ['id' => $id, 'error' => $e->getMessage()]);
-            return back()->withErrors('Produk tidak ditemukan.');
-        }
+        // Debug data input dan ID produk
+
+        $product = Product::findOrFail($id);
 
         if ($request->hasFile('path_img')) {
-            // Hapus gambar lama jika ada
             if ($product->path_img && Storage::exists('public/' . $product->path_img)) {
                 Storage::delete('public/' . $product->path_img);
             }
 
-            // Simpan gambar baru
             $path              = $request->file('path_img')->store('images', 'public');
             $product->path_img = $path;
         }
@@ -121,22 +111,16 @@ class ProductController extends Controller
 
         try {
             $product->save();
-            Log::info('Produk berhasil diperbarui:', $product->toArray());
         } catch (\Exception $e) {
-            Log::error('Gagal menyimpan produk:', ['error' => $e->getMessage()]);
-            abort(500, 'Gagal menyimpan produk.');
-
-            return back()->withErrors('Gagal menyimpan produk. Silakan coba lagi.');
         }
 
-        // Redirect setelah berhasil
-        return redirect()->route('dashboard.products', ['filter' => 'semua'])->with('success', 'Produk berhasil diperbarui.');
+        return redirect()->route('dashboard.products')->with('success', 'Produk berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->route('dashboard.products', ['filter' => 'semua'])->with('success', 'Product deleted successfully.');
+        return redirect()->route('dashboard.products')->with('success', 'Product deleted successfully.');
     }
 }

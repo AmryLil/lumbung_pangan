@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from 'daisyui';
+import flowbitePlugin from 'flowbite/plugin';
+
 export default {
   content: [
     "./resources/**/*.blade.php",
@@ -13,7 +16,7 @@ export default {
     },
   },
   plugins: [
-    require('daisyui'),
-    require('flowbite/plugin')
+    daisyui,
+    flowbitePlugin,
   ],
-}
+};

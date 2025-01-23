@@ -2,7 +2,7 @@
     <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div class="sm:flex sm:items-center sm:justify-between">
             <div class="text-2xl text-slate-700">
-                <img src="{{ asset('images/logo1.png') }}" alt="" class="w-[140px]">
+                <img src="{{ asset('images/logo_lumbung.png') }}" alt="" class="w-[180px]">
             </div>
             <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 ">
                 <li>
@@ -20,6 +20,6 @@
             </ul>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto  lg:my-8" />
-        <span class="block text-sm text-gray-500 sm:text-center ">© 2024 PureGlow™. All Rights Reserved.</span>
+        <span class="block text-sm text-gray-500 sm:text-center ">© 2025 LumbungPangan™. All Rights Reserved.</span>
     </div>
 </footer>

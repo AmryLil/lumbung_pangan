@@ -2,7 +2,7 @@
     class="flex top-0 justify-between items-center py-4 px-32 bg-white z-50 bg-gradient-to-r from-cream to-gray-100 w-full fixed ">
     {{-- logo --}}
     <div class="text-2xl text-slate-700">
-        <img src="{{ asset('images/logo1.png') }}" alt="" class="w-[140px]">
+        <img src="{{ asset('images/logo_lumbung.png') }}" alt="" class="w-[180px]">
     </div>
 
 

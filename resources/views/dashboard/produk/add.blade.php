@@ -5,6 +5,7 @@
 
         <form class="bg-white p-6 rounded-lg shadow-md" action="{{ route('products.store') }}" method="POST"
             enctype="multipart/form-data">
+            @csrf
             <h1 class="text-3xl font-semibold text-gray-800 mb-6">Tambah Produk</h1>
 
             @csrf
