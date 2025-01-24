@@ -60,10 +60,6 @@ Route::get('/kategori/{id}', function () {
     return view(view: 'productbycategory');
 })->name('categories.show');
 
-Route::get('/product/{id}', function () {
-    return view(view: 'product');
-})->name('product.show');
-
 // Route untuk cart
 Route::get('/cart', function () {
     return view('cart');

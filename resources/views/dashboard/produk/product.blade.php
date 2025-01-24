@@ -13,7 +13,7 @@
             </a>
         </div>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto px-4">
             <table class="table-auto w-full border-collapse rounded-xl overflow-hidden shadow-lg">
                 <thead class="bg-gray-200 text-gray-800 text-lg">
                     <tr>
