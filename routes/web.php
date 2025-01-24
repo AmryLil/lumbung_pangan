@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailsController;
+use App\Http\Controllers\signupController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Route untuk halaman utama
@@ -15,16 +18,18 @@ Route::get('/', function () {
 
 // Route untuk login
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login.form');
-Route::get('/signup', function () {
-    return view(view: 'signup');
-})->name('signup');
-
 Route::get('/cart', function () {
     return view('cart');
 });
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
+
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+// Route untuk signup
+Route::get('/signup', [signupController::class, 'showSignupForm'])->name('signup');
+Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
+
 Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart/view', [CartController::class, 'showCart'])->name('cart.view');
 Route::delete('/cart/{productId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
@@ -75,6 +80,7 @@ Route::get('/dashboard/transaksi/laporan', function () {
 
 // Route untuk logout
 Route::post('/logout', function () {
+    Auth::logout();
     return redirect('/')->with('status', 'Anda berhasil logout');
 })->name('logout');
 

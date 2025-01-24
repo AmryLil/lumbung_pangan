@@ -19,8 +19,8 @@
         <a href="/about"
             class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('about') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">About
             Us</a>
-        <a href="/cart"
-            class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('/cart') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">Cart</a>
+        <a href="/about"
+            class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('about') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">Contact</a>
 
     </nav>
 
@@ -29,7 +29,7 @@
     @if (Auth::check())
         {{-- Jika pengguna sudah login --}}
         <div class="flex gap-2">
-            <a href="{{ route('cart.view') }}" class="dropdown dropdown-end">
+            <a href="/cart" class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <div class="indicator">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -74,7 +74,7 @@
                             <div
                                 class="cursor-pointer w-full max-w-md h-[60vh] bg-gray-100 rounded-t-3xl shadow-lg p-6">
                                 <h3 class="text-gray-700 font-semibold mb-2">Preferences</h3>
-                                <a href="{{ route('transaksi.index') }}"
+                                <a href="#"
                                     class="flex items-center justify-between py-3 border-b border-gray-200">
                                     <div class="flex items-center space-x-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 16 16" fill="none"
@@ -90,7 +90,7 @@
                                     </div>
 
                                 </a>
-                                <a href="{{ route('cart.view') }}"
+                                <a href="/cart"
                                     class="cursor-pointer flex items-center justify-between py-3 border-b border-gray-200">
                                     <div class="flex items-center space-x-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 16 16" fill="none"

@@ -36,7 +36,7 @@
                 </div>
             @endif
 
-            <form action="#" method="POST">
+            <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="flex flex-col text-sm rounded-md">
                     <input
@@ -47,6 +47,7 @@
                         type="password" name="password" placeholder="Password" required />
                 </div>
                 <button
+                type="submit"
                     class="mt-5 w-full border p-2 bg-green-700 text-white rounded-[4px] hover:bg-green-800 duration-300 font-bold">Sign
                     in</button>
             </form>

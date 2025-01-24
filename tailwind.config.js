@@ -1,7 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import daisyui from 'daisyui';
-import flowbitePlugin from 'flowbite/plugin';
-
 export default {
   content: [
     "./resources/**/*.blade.php",
@@ -11,12 +8,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'jost': ['Jost', 'sans-serif'],
+        jost: ['Jost', 'sans-serif'], // Tidak perlu tanda kutip di sekitar 'jost' karena ini kunci JS.
       },
     },
   },
   plugins: [
-    daisyui,
-    flowbitePlugin,
+    require('daisyui'), // Pastikan `daisyui` sudah terinstall di proyek Anda.
+    require('flowbite/plugin'), // Pastikan `flowbite` juga sudah diinstal.
   ],
 };
