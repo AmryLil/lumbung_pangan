@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Home')
 
 @section('content')
     <div class="w-full mt-20 px-32">
@@ -7,15 +8,15 @@
             <div class="flex">
                 <!-- Product Image -->
                 <div class="w-1/2 flex justify-center relative h-[80vh]">
-                    <img src="https://images.unsplash.com/photo-1623607915241-a3151d59a9c8?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    <img src="{{ Str::startsWith($product->path_img, 'http') ? $product->path_img : asset('storage/images/' . $product->path_img) }}"
                         alt="Product Image" class="object-cover h-full">
                 </div>
 
                 <!-- Product Details -->
                 <div class="w-1/2 flex flex-col p-2 justify-between px-6">
                     <div class="text-start mt-2">
-                        <h1 class="text-4xl font-bold">Produk Dummy</h1>
-                        <p class="text-xl text-gray-900 font-light mt-2">Kategori Dummy</p>
+                        <h1 class="text-4xl font-bold">{{ $product->nama }}</h1>
+                        <p class="text-xl text-gray-900 font-light mt-2">Product Categories</p>
                         <div class="h-0.5 w-full bg-slate-900 mt-3"></div>
                     </div>
 
@@ -23,7 +24,7 @@
                     <div>
                         <div class="mt-6 text-base">
                             <p class="text-xl text-gray-900 font-light">Description</p>
-                            <p class="text-lg">Ini adalah deskripsi produk dummy.</p>
+                            <p class="text-lg">{{ $product->deskripsi }}</p>
                         </div>
 
                         <div class="flex items-center space-x-4">
@@ -33,14 +34,14 @@
                         </div>
                         <div class="mt-6 text-base">
                             <p class="text-xl text-gray-900 font-light">Jumlah</p>
-                            <p class="text-lg font-bold">10 Barang</p>
+                            <p class="text-lg font-bold">{{ $product->jumlah }} Barang</p>
                         </div>
                     </div>
 
                     <!-- Price -->
                     <div>
-                        <div class="mt-3 text-start mb-6">
-                            <p class="text-5xl font-bold">Rp 100.000</p>
+                        <div class="mt-6 text-start">
+                            <p class="text-5xl font-bold">Rp {{ number_format($product->harga, 0, ',', '.') }}</p>
                         </div>
 
                         <!-- Add to Cart Button -->
@@ -78,19 +79,19 @@
                 <div class="my-4">
                     <strong>Nama Bank: BCA</strong><br>
                     <strong>No. Rekening: 1234567890</strong><br>
-                    <strong>Nama Pemilik Rekening: PT. Dummy</strong>
+                    <strong>Nama Pemilik Rekening: PT. MaskGlow</strong>
                 </div>
 
                 <div class="border-t my-4 py-2">
                     <h3 class="font-semibold">Barang yang Dibeli:</h3>
                     <ul class="list-disc list-inside">
-                        <li>Produk Dummy</li>
+                        <li>{{ $product->nama }}</li>
                     </ul>
                 </div>
 
                 <div class="flex justify-between font-bold mt-4">
                     <span>Total:</span>
-                    <span>Rp 100.000</span>
+                    <span>Rp {{ $product->harga }}</span>
                 </div>
 
                 <form id="upload-receipt-form" enctype="multipart/form-data" class="mt-4">
@@ -107,7 +108,7 @@
                 <div class="flex justify-end mt-5">
                     <button onclick="closePaymentModal()"
                         class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded mr-2">Tutup</button>
-                    <button onclick="alert('Bukti pembayaran berhasil dikirim!')"
+                    <button onclick="submitPaymentProof()"
                         class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Kirim</button>
                 </div>
             </div>
@@ -115,38 +116,4 @@
     </div>
 @endsection
 
-@section('scripts')
-    <script>
-        // Toggle Modal
-        function toggleModal(modalId, show = true) {
-            const modal = document.getElementById(modalId);
-            modal.classList.toggle('hidden', !show);
-        }
 
-        function showPaymentModal() {
-            toggleModal('payment-modal', true);
-        }
-
-        function closePaymentModal() {
-            toggleModal('payment-modal', false);
-        }
-
-        // Receipt Preview
-        function previewReceipt() {
-            const receiptInput = document.getElementById('receipt');
-            const receiptPreview = document.getElementById('receipt-preview');
-            const receiptImage = document.getElementById('receipt-image');
-
-            if (receiptInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    receiptImage.src = e.target.result;
-                    receiptPreview.classList.remove('hidden');
-                };
-                reader.readAsDataURL(receiptInput.files[0]);
-            } else {
-                receiptPreview.classList.add('hidden');
-            }
-        }
-    </script>
-@endsection

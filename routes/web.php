@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailsController;
 use Illuminate\Support\Facades\Route;
 
 // Route untuk halaman utama
@@ -19,6 +21,15 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view(view: 'signup');
 })->name('signup');
+
+Route::get('/cart', function () {
+    return view('cart');
+});
+Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart/view', [CartController::class, 'showCart'])->name('cart.view');
+Route::delete('/cart/{productId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+Route::get('/product/{id}', [ProductDetailsController::class, 'showProductDetails'])->name('product.show');
 
 // Route untuk signup
 

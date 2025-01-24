@@ -1,6 +1,6 @@
 @props(['path', 'title', 'price', 'image', 'class'])
     <div class=" relative flex w-full flex-col overflow-hidden rounded-lg border border-gray-100  shadow-md">
-        <a class="relative mx-3 mt-3 flex h-52 overflow-hidden rounded-xl" href="#">
+        <a class="relative mx-3 mt-3 flex h-52 overflow-hidden rounded-xl" href="{{ $path }}" >
           <img class="object-cover w-full" src="{{ $image }}" alt="product image" />
         </a>
         <div class="mt-4 px-5 pb-5">

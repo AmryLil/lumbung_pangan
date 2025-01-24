@@ -10,17 +10,17 @@
     {{-- menu --}}
     <nav class="space-x-5 text-sm font-bold ">
         <a href="/"
-            class="text-gray-900 hover:text-white hover:bg-gray-900 {{ Request::is('/') ? 'bg-gray-900 text-white' : '' }} px-4 py-2 rounded">Home</a>
+            class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('/') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">Home</a>
         <a href="/shop"
-            class="text-gray-900 hover:text-white hover:bg-gray-900 {{ Request::is('shop') ? 'bg-gray-900 text-white' : '' }} px-4 py-2 rounded">Shop</a>
+            class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('shop') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">Shop</a>
         <a href="/kategori"
-            class="text-gray-900 hover:text-white hover:bg-gray-900 {{ Request::is('kategori') ? 'bg-gray-900 text-white' : '' }} px-4 py-2 rounded">Categori</a>
+            class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('kategori') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">Categori</a>
 
         <a href="/about"
-            class="text-gray-900 hover:text-white hover:bg-gray-900 {{ Request::is('about') ? 'bg-gray-900 text-white' : '' }} px-4 py-2 rounded">About
+            class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('about') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">About
             Us</a>
         <a href="/cart"
-            class="text-gray-900 hover:text-white hover:bg-gray-900 {{ Request::is('/cart') ? 'bg-gray-900 text-white' : '' }} px-4 py-2 rounded">Cart</a>
+            class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('/cart') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">Cart</a>
 
     </nav>
 
@@ -138,7 +138,7 @@
         {{-- Jika pengguna belum login --}}
         <div class="space-x-2">
             <a href="/login" class="text-gray-900 hover:text-black">Log In</a>
-            <a href="/signup" class="bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800">Sign Up</a>
+            <a href="/signup" class="bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-800">Sign Up</a>
         </div>
     @endif
 </header>
