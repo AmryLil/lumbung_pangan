@@ -50,6 +50,10 @@ Route::get('/riwayat', function () {
     return view(view: 'riwayat');
 })->name('riwayat');
 
+Route::get('/contact-us', function () {
+    return view(view: 'contact_us');
+})->name('contact_us');
+
 Route::view('/about', 'about_us')->name('about');
 
 // Route kategori produk
@@ -93,11 +97,3 @@ Route::prefix('dashboard')->group(function () {
     Route::put('/categories/{id}', [CategoryProductController::class, 'update'])->name('dashboard.category_products.update');
     Route::delete('/categories/{id}', [CategoryProductController::class, 'destroy'])->name('dashboard.category_products.destroy');
 });
-
-Route::get('/input', [NilaiController::class, 'index'])->name('input');
-
-// Route untuk menyimpan data nilai
-Route::post('/input/store', [NilaiController::class, 'store'])->name('input.store');
-
-// Route untuk menampilkan hasil nilai
-Route::get('/hasil', [NilaiController::class, 'index2'])->name('hasil');

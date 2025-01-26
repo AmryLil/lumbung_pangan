@@ -106,7 +106,7 @@
               @else
                   <p class="text-center col-span-full">No products available.</p>
               @endif
-          </div>
+            </div>
           <dialog id="my_modal_3" class="modal">
             <div class="modal-box">
                 <form method="dialog">

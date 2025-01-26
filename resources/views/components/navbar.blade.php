@@ -19,8 +19,8 @@
         <a href="/about"
             class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('about') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">About
             Us</a>
-        <a href="/about"
-            class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('about') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">Contact</a>
+        <a href="/contact-us"
+            class="text-gray-900 hover:text-white hover:bg-green-700 {{ Request::is('contact-us') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded">Contact</a>
 
     </nav>
 
