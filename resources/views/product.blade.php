@@ -72,12 +72,14 @@
             <div class="bg-white rounded-lg shadow-xl w-1/3 p-6 relative">
                 <button onclick="closePaymentModal()"
                     class="absolute top-4 right-4 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-full w-8 h-8 flex items-center justify-center font-bold">&times;</button>
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Transfer Bank</h2>
-                <p class="text-gray-700 mb-4">Silakan transfer jumlah total ke rekening bank berikut:</p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Pembayaran QRIS</h2>
+                <p class="text-gray-700 mb-4">Silakan scan kode QR di bawah ini untuk menyelesaikan pembayaran:</p>
                 <div class="bg-gray-100 p-4 rounded-lg text-gray-800 mb-6">
-                    <strong>Nama Bank:</strong> BCA<br>
-                    <strong>No. Rekening:</strong> 1234567890<br>
-                    <strong>Nama Pemilik:</strong> PT. MaskGlow
+                    <strong>QRIS Pembayaran:</strong>
+                    <div class="flex justify-center">
+                        <img src="{{ asset('images/frame.png') }}" alt="QRIS" class="w-48 h-48">
+                    </div>
+                    <p class="mt-2">Pastikan untuk memasukkan jumlah yang sesuai dengan total yang tertera.</p>
                 </div>
                 <h3 class="font-bold text-gray-800 mb-2">Barang yang Dibeli:</h3>
                 <ul class="list-disc list-inside text-gray-700 mb-4">
@@ -105,6 +107,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 @endsection
 @section('scripts')

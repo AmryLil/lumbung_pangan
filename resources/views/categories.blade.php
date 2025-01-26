@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Categories List (Vertical Full Width) -->
-    <div class="space-y-8 px-32 mt-28">
+    <div class="space-y-8 px-32 mt-20">
         @foreach ($categories as $category)
             <!-- Dynamic Category Cards -->
             @include('components.categories.card_category', [

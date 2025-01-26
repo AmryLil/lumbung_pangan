@@ -78,12 +78,15 @@
     <div id="payment-modal"
         class="fixed z-50 inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center overflow-auto">
         <div class="bg-white rounded-lg w-1/3 p-5">
-            <h2 class="text-xl font-bold mb-4">Transfer Bank</h2>
-            <p>Silakan transfer jumlah total ke rekening bank berikut:</p>
+            <h2 class="text-xl font-bold mb-4">Pembayaran QRIS</h2>
+            <p>Silakan scan kode QR di bawah ini untuk menyelesaikan pembayaran:</p>
             <div class="my-4">
-                <strong>Nama Bank: BCA</strong><br>
-                <strong>No. Rekening: 1234567890</strong><br>
-                <strong>Nama Pemilik Rekening: PT. MaskGlow</strong>
+                <strong>QRIS Pembayaran:</strong>
+                <div class="flex justify-center mt-2">
+                    <!-- Ganti dengan path QR code yang sesuai -->
+                    <img src="{{ asset('images/frame.png') }}" alt="QRIS" class="w-48 h-48">
+                </div>
+                <p class="mt-2">Pastikan untuk memasukkan jumlah yang sesuai dengan total yang tertera.</p>
             </div>
 
             <!-- Daftar Barang yang Dibeli -->
