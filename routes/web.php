@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\signupController;
@@ -18,10 +19,6 @@ Route::get('/', function () {
 
 // Route untuk login
 
-Route::get('/cart', function () {
-    return view('cart');
-});
-
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
@@ -31,8 +28,11 @@ Route::get('/signup', [signupController::class, 'showSignupForm'])->name('signup
 Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
 
 Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
-Route::get('/cart/view', [CartController::class, 'showCart'])->name('cart.view');
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.view');
 Route::delete('/cart/{productId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+Route::post('/checkout/single/{productId}', [PaymentController::class, 'checkoutSingleProduct'])->name('checkout.single');
+Route::post('/submit-payment-proof', [PaymentController::class, 'store']);
 
 Route::get('/product/{id}', [ProductDetailsController::class, 'showProductDetails'])->name('product.show');
 
@@ -59,11 +59,6 @@ Route::get('/kategori', [CategoryProductController::class, 'index'])->name('cate
 Route::get('/kategori/{id}', function () {
     return view(view: 'productbycategory');
 })->name('categories.show');
-
-// Route untuk cart
-Route::get('/cart', function () {
-    return view('cart');
-});
 
 // Route untuk transaksi
 Route::get('/dashboard/transaksi', function () {

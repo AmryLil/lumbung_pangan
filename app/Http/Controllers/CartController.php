@@ -45,18 +45,13 @@ class CartController extends Controller
 
     public function showCart()
     {
-        // Ambil ID user dari sesi
         $userId = session('user_id');
 
-        // Ambil cart berdasarkan user_id dan muat cartItems
         $cart = Cart::where('user_id', $userId)->with('cartItems.product')->first();
-
-        // Pastikan cart ditemukan
         if (!$cart) {
-            return view('cart', ['cartItems' => collect()]);  // Jika tidak ada cart, kembalikan koleksi kosong
+            return view('cart', ['cartItems' => collect()]);
         }
 
-        // Kirim data ke view
         return view('cart', ['cartItems' => $cart->cartItems]);
     }
 
@@ -77,7 +72,7 @@ class CartController extends Controller
                     'product_id'   => $item->product_id,
                     'product_name' => $item->product->name,
                     'quantity'     => $item->quantity,
-                    'price'        => $item->price
+                    'price'        => $item->price,
                 ];
             })
         ], 200);

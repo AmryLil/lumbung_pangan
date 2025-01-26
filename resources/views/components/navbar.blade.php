@@ -29,7 +29,7 @@
     @if (Auth::check())
         {{-- Jika pengguna sudah login --}}
         <div class="flex gap-2">
-            <a href="/cart" class="dropdown dropdown-end">
+            <a href="{{ route('cart.view') }}" class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <div class="indicator">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -90,7 +90,7 @@
                                     </div>
 
                                 </a>
-                                <a href="/cart"
+                                <a href={{ route('cart.view') }}
                                     class="cursor-pointer flex items-center justify-between py-3 border-b border-gray-200">
                                     <div class="flex items-center space-x-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 16 16" fill="none"
