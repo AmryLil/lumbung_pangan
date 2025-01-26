@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class PaymentController extends Controller
@@ -30,16 +31,18 @@ class PaymentController extends Controller
         return response()->json($transaksi);
     }
 
-    // Method untuk menyimpan bukti pembayaran dari keranjang
     public function store(Request $request)
     {
-        // Validasi input untuk bukti transfer
+        // Validasi input
         $validated = $request->validate([
-            'receipt' => 'required|image|max:2048',  // Bukti transfer wajib ada dan harus berupa gambar
+            'receipt' => 'required|image|max:2048',
         ]);
 
         // Ambil data pengguna yang sedang login dari session
         $userId = session('user_id');
+
+        // Debugging: Log user_id
+        Log::debug('User ID from session: ' . $userId);
 
         if (!$userId) {
             return response()->json(['message' => 'Pengguna tidak ditemukan'], 403);
@@ -48,12 +51,18 @@ class PaymentController extends Controller
         // Ambil data keranjang berdasarkan user_id
         $cart = Cart::where('user_id', $userId)->first();
 
+        // Debugging: Log cart data
+        Log::debug('Cart data: ' . json_encode($cart));
+
         if (!$cart) {
             return response()->json(['message' => 'Keranjang belanja tidak ditemukan'], 404);
         }
 
         // Ambil item dari tabel CartItem berdasarkan cart_id
         $cartItems = CartItem::where('cart_id', $cart->id)->get();
+
+        // Debugging: Log cart items
+        Log::debug('Cart Items: ' . json_encode($cartItems));
 
         if ($cartItems->isEmpty()) {
             return response()->json(['message' => 'Keranjang belanja kosong'], 400);
@@ -62,9 +71,11 @@ class PaymentController extends Controller
         $totalPrice    = 0;
         $totalQuantity = 0;
 
-        // Simpan file bukti transfer
         try {
             $path = $request->file('receipt')->store('bukti_transfer', 'public');
+
+            // Debugging: Log file path
+            Log::debug('File path: ' . $path);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Gagal menyimpan bukti transfer', 'error' => $e->getMessage()], 500);
         }
@@ -72,6 +83,9 @@ class PaymentController extends Controller
         // Proses transaksi dan pengurangan stok produk
         foreach ($cartItems as $item) {
             $product = $item->product;
+
+            // Debugging: Log product data
+            Log::debug('Processing product: ' . json_encode($product));
 
             if (!$product) {
                 return response()->json(['message' => 'Produk dengan ID ' . $item->product_id . ' tidak ditemukan'], 404);
@@ -96,10 +110,13 @@ class PaymentController extends Controller
                 'jumlah'            => $item->quantity,
                 'id_produk'         => $product->id,
                 'harga_total'       => $product->harga * $item->quantity,
-                'status'            => 'success',
+                'status'            => 'completed',
                 'bukti_tf'          => $path,
                 'tanggal_transaksi' => Carbon::now(),
             ]);
+
+            // Debugging: Log transaction data
+            Log::debug('Transaction created for product: ' . $product->id . ' with total price: ' . $product->harga * $item->quantity);
         }
 
         // Kosongkan keranjang setelah checkout berhasil
@@ -107,6 +124,9 @@ class PaymentController extends Controller
 
         // Hapus keranjang jika sudah kosong
         $cart->delete();
+
+        // Debugging: Log cart cleared
+        Log::debug('Cart cleared for user ID: ' . $userId);
 
         return response()->json(['message' => 'Pembayaran berhasil disimpan', 'data' => 'success'], 201);
     }

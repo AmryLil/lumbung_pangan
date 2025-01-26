@@ -74,7 +74,7 @@
                             <div
                                 class="cursor-pointer w-full max-w-md h-[60vh] bg-gray-100 rounded-t-3xl shadow-lg p-6">
                                 <h3 class="text-gray-700 font-semibold mb-2">Preferences</h3>
-                                <a href="#"
+                                <a href="{{ route('transaksi.index') }}"
                                     class="flex items-center justify-between py-3 border-b border-gray-200">
                                     <div class="flex items-center space-x-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 16 16" fill="none"

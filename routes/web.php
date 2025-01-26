@@ -8,14 +8,13 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\signupController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Route untuk halaman utama
 
-Route::get('/', function () {
-    return view(view: 'index');
-})->name('index');
+Route::get('/', [ProductController::class, 'Best4Product'])->name('product.best');
 
 // Route untuk login
 
@@ -33,6 +32,8 @@ Route::delete('/cart/{productId}', [CartController::class, 'removeFromCart'])->n
 
 Route::post('/checkout/single/{productId}', [PaymentController::class, 'checkoutSingleProduct'])->name('checkout.single');
 Route::post('/submit-payment-proof', [PaymentController::class, 'store']);
+
+Route::get('/transaksion', [TransaksiController::class, 'index'])->name('transaksi.index');
 
 Route::get('/product/{id}', [ProductDetailsController::class, 'showProductDetails'])->name('product.show');
 

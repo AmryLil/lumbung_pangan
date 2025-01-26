@@ -28,7 +28,6 @@ class ProductController extends Controller
     public function Best4Product(Request $request)
     {
         $products = Product::limit(4)->get();
-        dd($products);  // Debug produk terbaik
         return view('index', compact('products'));
     }
 

@@ -29,7 +29,7 @@
                         <div class="flex items-center hover:bg-gray-100 px-6 py-5">
                             <div class="flex w-2/5">
                                 <div class="w-20">
-                                    <img class="h-24" src="{{ $item->product->path_img }}"
+                                    <img class="h-24" src="{{ Str::startsWith($item->product->path_img, 'http') ? $item->product->path_img : asset('storage/' . $item->product->path_img) }}"
                                         alt="{{ $item->product->nama }}">
                                 </div>
                                 <div class="flex flex-col justify-between ml-4 flex-grow">
@@ -191,8 +191,6 @@
             }
 
             const formData = new FormData(document.getElementById('upload-receipt-form'));
-            formData.append('customer_id', {{ session('user_id') }});
-            formData.append('total_amount', {{ $totalPrice }});
 
             try {
                 const response = await fetch('/submit-payment-proof', {
@@ -205,14 +203,14 @@
                 });
 
                 const data = await response.json();
-                // console.log("ini datanya : " + data.message);
+                console.log("ini datanya : " + data.message);
 
 
                 if (data.message === 'Pembayaran berhasil disimpan') {
                     Swal.fire({
                         title: 'Success',
                         text: 'Pembayaran berhasil disimpan',
-                        icon: 'success', // Ini akan menampilkan ikon centang default
+                        icon: 'success', 
                         confirmButtonText: 'OK',
                     }).then(() => {
                         closePaymentModal();
