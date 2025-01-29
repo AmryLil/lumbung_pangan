@@ -19,7 +19,7 @@ class ContactController extends Controller
     ]);
 
     try {
-      Mail::to('haruruapkpremiumm')->send(new ContactUsMail($validated));
+      Mail::to('haruruapkpremiumm@gmail.com')->send(new ContactUsMail($validated));
 
       return back()->with('success', 'Pesan berhasil dikirim!');
     } catch (\Exception $e) {

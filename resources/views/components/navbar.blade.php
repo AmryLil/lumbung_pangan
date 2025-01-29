@@ -5,36 +5,34 @@
         <img src="{{ asset('images/lumbung-pangan.png') }}" alt="" class="w-[200px]">
     </div>
 
-
-
     {{-- menu --}}
     <nav class="space-x-5 text-sm font-bold ">
     <a href="/"
-        class="text-gray-900 hover:text-white {{ Request::is('/') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded"
+        class="text-gray-900 hover:text-white {{ Request::is('/') ? 'bg-green-700 text-white' : '' }} px-3 py-2 rounded"
         style="transition: background-color 0.3s;"
         onmouseover="this.style.backgroundColor='#20750b';"
         onmouseout="this.style.backgroundColor='';">Home</a>
 
     <a href="/shop"
-        class="text-gray-900 hover:text-white {{ Request::is('shop') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded"
+        class="text-gray-900 hover:text-white {{ Request::is('shop') ? 'bg-green-700 text-white' : '' }} px-3 py-2 rounded"
         style="transition: background-color 0.3s;"
         onmouseover="this.style.backgroundColor='#20750b';"
         onmouseout="this.style.backgroundColor='';">Shop</a>
 
     <a href="/kategori"
-        class="text-gray-900 hover:text-white {{ Request::is('kategori') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded"
+        class="text-gray-900 hover:text-white {{ Request::is('kategori') ? 'bg-green-700 text-white' : '' }} px-3 py-2 rounded"
         style="transition: background-color 0.3s;"
         onmouseover="this.style.backgroundColor='#20750b';"
         onmouseout="this.style.backgroundColor='';">Categori</a>
 
     <a href="/about"
-        class="text-gray-900 hover:text-white {{ Request::is('about') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded"
+        class="text-gray-900 hover:text-white {{ Request::is('about') ? 'bg-green-700 text-white' : '' }} px-3 py-2 rounded"
         style="transition: background-color 0.3s;"
         onmouseover="this.style.backgroundColor='#20750b';"
         onmouseout="this.style.backgroundColor='';">About Us</a>
 
     <a href="/contact-us"
-        class="text-gray-900 hover:text-white {{ Request::is('contact-us') ? 'bg-green-700 text-white' : '' }} px-4 py-2 rounded"
+        class="text-gray-900 hover:text-white {{ Request::is('contact-us') ? 'bg-green-700 text-white' : '' }} px-3 py-2 rounded"
         style="transition: background-color 0.3s;"
         onmouseover="this.style.backgroundColor='#20750b';"
         onmouseout="this.style.backgroundColor='';">Contact</a>

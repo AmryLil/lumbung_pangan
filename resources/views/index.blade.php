@@ -153,7 +153,11 @@
           </dialog>
         </div>
     </section>
-
+    <div>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopButton" class="hidden fixed bottom-5 right-5 bg-green-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-green-500 transition">
+        ▲
+    </button>
 @endsection
 
 @section('scripts')
@@ -226,6 +230,7 @@
         });
     });
 </script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const swiper = new Swiper('.swiper-container', {
@@ -248,4 +253,27 @@
     });
 </script>
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const scrollToTopButton = document.getElementById("scrollToTopButton");
+
+        // Event listener untuk mendeteksi scroll
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) { // Muncul jika scroll lebih dari 200px
+                scrollToTopButton.classList.remove("hidden");
+            } else {
+                scrollToTopButton.classList.add("hidden");
+            }
+        });
+
+        // Event listener untuk klik tombol (scroll ke atas)
+        scrollToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth", // Scroll halus ke atas
+            });
+        });
+    });
+</script>
 @endsection

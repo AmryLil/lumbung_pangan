@@ -19,27 +19,32 @@
                 <div class="w-full grid lg:grid-cols-2 grid-cols-1 gap-12">
                     <div class="flex flex-col gap-8">
                         <div class="flex items-center gap-6">
-                            <div class="p-4 bg-green-50 rounded-full">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10l1.503 1.503A4.978 4.978 0 0111 15v0a4.978 4.978 0 016.497-3.497L19 10m-7-7h0a3 3 0 013 3v0a3 3 0 01-3 3v0a3 3 0 01-3-3v0a3 3 0 013-3v0z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-gray-900 text-xl font-bold">Telepon</h4>
-                                <p class="text-gray-500 text-base">+62 852-4227-1149</p>
-                            </div>
+                            <a href="https://wa.me/6285242271149" target="_blank" class="flex items-center gap-6">
+                                <div class="p-4 bg-green-50 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10l1.503 1.503A4.978 4.978 0 0111 15v0a4.978 4.978 0 016.497-3.497L19 10m-7-7h0a3 3 0 013 3v0a3 3 0 01-3 3v0a3 3 0 01-3-3v0a3 3 0 013-3v0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-gray-900 text-xl font-bold">WhatsApp</h4>
+                                    <p class="text-gray-500 text-base">+62 852-4227-1149</p>
+                                </div>
+                            </a>
                         </div>
                         <div class="flex items-center gap-6">
-                            <div class="p-4 bg-green-50 rounded-full">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A8.962 8.962 0 0116.94 21a9.003 9.003 0 01-7.88-4.21A9.002 9.002 0 0112 3.94a8.962 8.962 0 018.21 8.85z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="text-gray-900 text-xl font-bold">Email</h4>
-                                <p class="text-gray-500 text-base">support@lumbungpangan.com</p>
-                            </div>
+                            <a href="mailto:support@lumbungpangan.com" class="flex items-center gap-6">
+                                <div class="p-4 bg-green-50 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A8.962 8.962 0 0116.94 21a9.003 9.003 0 01-7.88-4.21A9.002 9.002 0 0112 3.94a8.962 8.962 0 018.21 8.85z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-gray-900 text-xl font-bold">Email</h4>
+                                    <p class="text-gray-500 text-base">support@lumbungpangan.com</p>
+                                </div>
+                            </a>
                         </div>
+
                         <div class="flex items-center gap-6">
                             <div class="p-4 bg-green-50 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -51,9 +56,19 @@
                                 <p class="text-gray-500 text-base">Jl. Toddopuli Raya Timur No.83 Blok HC No. 15, Makassar</p>
                             </div>
                         </div>
+                        <!-- Embed Google Maps -->
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63795.61766204884!2d119.42021056484375!3d-5.135399453926954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf1c1747078b35%3A0x3a2e8f2569dded95!2sJl.%20Toddopuli%20Raya%20Timur%20No.83%20Blok%20HC%20No.%2015!5e0!3m2!1sen!2sid!4v1674672741298!5m2!1sen!2sid"
+                            width="100%"
+                            height="300"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
 
-                    <form action="/contact" method="POST" class="bg-white p-8 rounded-xl shadow-md flex flex-col gap-6">
+                    <form action="{{ route('contact.send') }}" method="POST" class="bg-white p-8 rounded-xl shadow-md flex flex-col gap-6">
                         @csrf
                         <div class="grid md:grid-cols-2 grid-cols-1 gap-6">
                             <input type="text" name="name" placeholder="Nama Anda" required
@@ -73,7 +88,6 @@
                             {{ session('success') }}
                         </div>
                     @endif
-
                 </div>
             </div>
         </div>
