@@ -163,7 +163,7 @@
             </div>
         </dialog>
     </div>
-    <button id="scrollToTopButton" class="hidden fixed bottom-20 right-5 bg-green-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-green-500 transition z-50">
+    <button id="scrollToTopButton" class="hidden fixed bottom-20 right-20 bg-green-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-green-500 transition z-50">
       ▲
     </button>
 </section>
